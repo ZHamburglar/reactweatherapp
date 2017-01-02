@@ -11,9 +11,20 @@ var React = require('react');
 var About = (props) => {
   return (
     <div>
-      <h3>About Component</h3>
-      <p>Welcome to the about page!</p>
-    </div>
+      <h1 className="text-center">About this App</h1>
+      <p>This is a weather application built with React. Built in order to strengthen my knowledge of React.</p>
+      <p>
+        Here are some of the tools I used:
+      </p>
+      <ul>
+        <li>
+          <a href="https://facebook.github.io/react">React</a> - This was the Javascript framework used.
+        </li>
+        <li>
+          <a href="http://openweathermap.org">Open Weather Map</a> - This is the API used in order to get weather updates.
+        </li>
+      </ul>
+  </div>
   )
 }
 module.exports = About;
