@@ -60,7 +60,6 @@ input[type=search], input[type=submit]
 }
 .row
 {
-  /*background-color: red;*/
   min-height: calc(100vh - 60px);
   display: flex;
   align-items: center;
@@ -70,20 +69,17 @@ input[type=search], input[type=submit]
 
 .top-bar-left
 {
-  // background-color: red;
   width: 50% !important;
 }
 .menu
 {
   float: left;
-  // background-color: blue;
   width: 100%;
 }
 .app-name, .eachLink
 {
   float: left;
   height: 55px !important;
-  // background-color: red;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -113,7 +109,6 @@ input[type=search], input[type=submit]
   .app-name
   {
     width: 100%;
-    // background-color: red;
     float: left;
   }
   .eachLink
@@ -121,7 +116,6 @@ input[type=search], input[type=submit]
     width: 32%;
     float: left;
     margin-left: 1%;
-    // background-color: blue
  }
   .top-bar-right
   {
@@ -132,7 +126,6 @@ input[type=search], input[type=submit]
    width: 140px;
  }
 }
-
 
 .weather-location
 {
