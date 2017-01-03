@@ -1,9 +1,8 @@
 var axios = require('axios');
 
 // the open weather map api needs to be entered here along with you api key
-const OPEN_WEATHER_MAP_URL = 'http://api.openweathermap.org/data/2.5/weather?units=metric&appid=5044a064047b2e4eda625e7fac363785';
+const OPEN_WEATHER_MAP_URL = 'http://api.openweathermap.org/data/2.5/weather?units=imperial&appid=14b4ca22a26b9fd730ddc39166e59dd8';
 
-// 5044a064047b2e4eda625e7fac363785
 
 module.exports={
   getWeather:function(location){

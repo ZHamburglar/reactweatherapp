@@ -1,23 +1,30 @@
 var React = require('react');
-//
+
 // var About = React.createClass({
 //   render: function () {
-//     return(
-//       <h3>About component</h3>
-//     );
+//     return (
+//       <h3>About Component</h3>
+//     )
 //   }
 // });
-
-// or
-
+// This is lines 3-9 refactored.
 var About = (props) => {
-  return(
-    <div >
-      <h1 className="text-center page-title">ABOUT US</h1>
-      <p>This is a web app where you can check the weather for any location.</p>
-
-    </div>
+  return (
+    <div>
+      <h1 className="text-center">About this App</h1>
+      <p>This is a weather application built with React. Built in order to strengthen my knowledge of React.</p>
+      <p>
+        Here are some of the tools I used:
+      </p>
+      <ul>
+        <li>
+          <a href="https://facebook.github.io/react">React</a> - This was the Javascript framework used.
+        </li>
+        <li>
+          <a href="http://openweathermap.org">Open Weather Map</a> - This is the API used in order to get weather updates.
+        </li>
+      </ul>
+  </div>
   )
-};
-
+}
 module.exports = About;

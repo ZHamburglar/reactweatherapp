@@ -114,12 +114,6 @@
 	var Weather = __webpack_require__(225);
 	var About = __webpack_require__(248);
 	var Examples = __webpack_require__(249);
-	// the top line can be writter like this in es5
-	// var Route = require('react-router').route;
-	// var Router = require('react-router').router;
-	// var IndexRoute = require('react-router').IndexRoute;
-	// var hashHistory = require('react-router').hashHistory;
-
 
 	// Load foundation
 	__webpack_require__(250);
@@ -25315,7 +25309,7 @@
 	            React.createElement(
 	              'li',
 	              null,
-	              React.createElement('input', { type: 'search', placeholder: 'Search weather by city name', className: 'nav-search', ref: 'location' })
+	              React.createElement('input', { type: 'search', placeholder: 'Search weather by City', className: 'nav-search', ref: 'location' })
 	            ),
 	            React.createElement(
 	              'li',
@@ -25538,7 +25532,7 @@
 	      React.createElement(
 	        'form',
 	        { onSubmit: this.onFormSubmit },
-	        React.createElement('input', { type: 'search', ref: 'location', placeholder: 'Search weather by city name' }),
+	        React.createElement('input', { type: 'search', ref: 'location', placeholder: 'Search weather by city' }),
 	        React.createElement(
 	          'button',
 	          { className: 'button expanded hollow button-form' },
@@ -25653,9 +25647,7 @@
 	var axios = __webpack_require__(229);
 
 	// the open weather map api needs to be entered here along with you api key
-	var OPEN_WEATHER_MAP_URL = 'http://api.openweathermap.org/data/2.5/weather?units=metric&appid=5044a064047b2e4eda625e7fac363785';
-
-	// 5044a064047b2e4eda625e7fac363785
+	var OPEN_WEATHER_MAP_URL = 'http://api.openweathermap.org/data/2.5/weather?units=imperial&appid=14b4ca22a26b9fd730ddc39166e59dd8';
 
 	module.exports = {
 	  getWeather: function getWeather(location) {
@@ -26811,34 +26803,60 @@
 	"use strict";
 
 	var React = __webpack_require__(8);
-	//
+
 	// var About = React.createClass({
 	//   render: function () {
-	//     return(
-	//       <h3>About component</h3>
-	//     );
+	//     return (
+	//       <h3>About Component</h3>
+	//     )
 	//   }
 	// });
-
-	// or
-
+	// This is lines 3-9 refactored.
 	var About = function About(props) {
 	  return React.createElement(
 	    "div",
 	    null,
 	    React.createElement(
 	      "h1",
-	      { className: "text-center page-title" },
-	      "ABOUT US"
+	      { className: "text-center" },
+	      "About this App"
 	    ),
 	    React.createElement(
 	      "p",
 	      null,
-	      "This is a web app where you can check the weather for any location."
+	      "This is a weather application built with React. Built in order to strengthen my knowledge of React."
+	    ),
+	    React.createElement(
+	      "p",
+	      null,
+	      "Here are some of the tools I used:"
+	    ),
+	    React.createElement(
+	      "ul",
+	      null,
+	      React.createElement(
+	        "li",
+	        null,
+	        React.createElement(
+	          "a",
+	          { href: "https://facebook.github.io/react" },
+	          "React"
+	        ),
+	        " - This was the Javascript framework used."
+	      ),
+	      React.createElement(
+	        "li",
+	        null,
+	        React.createElement(
+	          "a",
+	          { href: "http://openweathermap.org" },
+	          "Open Weather Map"
+	        ),
+	        " - This is the API used in order to get weather updates."
+	      )
 	    )
 	  );
 	};
-
 	module.exports = About;
 
 /***/ },
@@ -26881,8 +26899,8 @@
 	          null,
 	          React.createElement(
 	            Link,
-	            { to: '/?location=Verem,Goa' },
-	            'Verem, Goa'
+	            { to: '/?location=Austin, Texas' },
+	            'Austin, Texas'
 	          )
 	        ),
 	        React.createElement(
