@@ -1,19 +1,23 @@
 var express = require('express');
 
-// Create our app
-var app = express();
-const PORT = process.env.PORT || 3000;
+//create the app
 
-app.use(function (req, res, next){
-  if (req.headers['x-forwarded-proto'] === 'https') {
+var app = express();
+const PORT = process.env.PORT || 3000; /*HEROKU */
+
+// CHECK IF THE TRAFFIC IS ON HTTP
+app.use(function(req, res, next){
+  if(req.headers['x-forwarded-proto'] === 'https'){
     res.redirect('http://' + req.hostname + req.url);
-  } else {
+  }else{
     next();
   }
 });
 
+
+// server to use , allows you to use functionality
 app.use(express.static('public'));
 
-app.listen(PORT, function () {
-  console.log('Express server is up on port ' + PORT);
+app.listen(PORT, function(){
+  console.log('Expres server is up on port' + PORT);
 });
