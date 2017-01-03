@@ -1,12 +1,7 @@
-
 var React = require('react');
 
-
 var WeatherMessage = React.createClass({
-
-
   render: function () {
-
     var {temp,location, humidity, description, icon, clouds} = this.props;
     var icons =  "http://openweathermap.org/img/w/" + icon + ".png";
     return(
@@ -28,7 +23,6 @@ var WeatherMessage = React.createClass({
                     <div className="weather-eachParameters">{clouds}%</div>
             </div>
         </div>
-
     );
   }
 })

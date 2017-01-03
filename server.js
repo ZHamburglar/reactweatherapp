@@ -3,9 +3,9 @@ var express = require('express');
 //create the app
 
 var app = express();
-const PORT = process.env.PORT || 3000; /*HEROKU */
+const PORT = process.env.PORT || 3000; 
 
-// CHECK IF THE TRAFFIC IS ON HTTP
+// CHECK IF THE TRAFFIC IS ON HTTP or convert to HTTP
 app.use(function(req, res, next){
   if(req.headers['x-forwarded-proto'] === 'https'){
     res.redirect('http://' + req.hostname + req.url);

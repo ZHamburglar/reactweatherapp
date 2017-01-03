@@ -1,5 +1,5 @@
 {
-  "name": "Weather-App",
+  "name": "WeatherAppReact",
   "version": "1.0.0",
   "description": "A Weather Application",
   "main": "index.js",
@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
-  "author": "Erroll Alfredo Antao",
+  "author": "Kollin Brandenburg",
   "license": "MIT",
   "dependencies": {
     "axios": "^0.13.1",

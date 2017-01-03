@@ -5,7 +5,6 @@ var openWeatherMap = require('openWeatherMap');
 var ErrorModal = require('ErrorModal');
 
 var Weather = React.createClass({
-
   getInitialState: function(){
     return{
       isLoading: false,
@@ -28,14 +27,16 @@ var Weather = React.createClass({
       icon: undefined
     });
 
+
     openWeatherMap.getWeather(location).then(function(weather){
       that.setState({
+        //this is where we were messing up on in terms of specificity
         location: location,
         temp: weather.temp,
-          humidity: weather.humidity,
-            description: weather.description,
-            clouds: weather.clouds,
-            icon: weather.icon,
+        humidity: weather.humidity,
+        description: weather.description,
+        clouds: weather.clouds,
+        icon: weather.icon,
         isLoading: false,
       });
     }, function(e){
@@ -44,71 +45,13 @@ var Weather = React.createClass({
         errorMessage: e.message
       });
     });
-
-    // openWeatherMap.getHumidity(location).then(function(humidity){
-    //   that.setState({
-    //     location: location,
-    //     humidity: humidity,
-    //     isLoading: false,
-    //   });
-    // }, function(e){
-    //   that.setState({
-    //     isLoading:false,
-    //     errorMessage: e.message
-    //   });
-    // });
-    //
-    // openWeatherMap.getDescription(location).then(function(description){
-    //   that.setState({
-    //     location: location,
-    //     description: description,
-    //     isLoading: false,
-    //   });
-    // }, function(e){
-    //   that.setState({
-    //     isLoading:false,
-    //     errorMessage: e.message
-    //   });
-    // });
-    //
-    // openWeatherMap.getClouds(location).then(function(clouds){
-    //   that.setState({
-    //     location: location,
-    //     clouds: clouds,
-    //     isLoading: false,
-    //   });
-    // }, function(e){
-    //   that.setState({
-    //     isLoading:false,
-    //     errorMessage: e.message
-    //   });
-    // });
-    //
-    // openWeatherMap.getIcon(location).then(function(icon){
-    //   that.setState({
-    //     location: location,
-    //     icon: icon,
-    //     isLoading: false,
-    //   });
-    // }, function(e){
-    //   that.setState({
-    //     isLoading:false,
-    //     errorMessage: e.message
-    //   });
-    // });
-    // this.setState({
-    //   location : location,
-    //   temp :23,
-    // });
-
   },
 
   componentDidMount: function(){
     var location= this.props.location.query.location;
-
     if(location && location.length>0){
       this.handleSearch(location)
-      window.location.hash = '#/'; /*resent to defautl */
+      window.location.hash = '#/';
     }
   },
 
@@ -118,15 +61,13 @@ var Weather = React.createClass({
 
     if(location && location.length>0){
       this.handleSearch(location)
-      window.location.hash = '#/'; /*resent to defautl */
+      window.location.hash = '#/';
     }
   },
 
   render: function () {
     var {isLoading, temp, humidity, description, icon, clouds,  location, errorMessage} = this.state;
-    // can also be written as below
-    // var temp = this.state.temp;
-    // var location = this.state.location;
+
     function renderMessage(){
         if (isLoading){
           return <h3 className="text-center">Fetching Weather...</h3>;

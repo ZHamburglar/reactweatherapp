@@ -1,7 +1,4 @@
-// this file lets you configure what webpack does
-
 var webpack = require('webpack');
-
 
 module.exports = {
   entry : [
