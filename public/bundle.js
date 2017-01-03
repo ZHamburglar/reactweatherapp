@@ -95,12 +95,9 @@
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
 
 	// render and getDefaultProps method come with react and get automatically called by the library
-	// props = this.props
 	// there are two types of data in a component : props, state  -  a component isnt allowed to update its own props but is allowed to update its own state
-	// get initialState is a method built in react and is very similar to getDefaultprops
 	// State = this.state
-	// every react component needs to have render method
-	//
+
 	var React = __webpack_require__(8);
 	var ReactDOM = __webpack_require__(165);
 
@@ -129,7 +126,6 @@
 	    Route,
 	    { path: '/', component: Main },
 	    React.createElement(IndexRoute, { component: Weather }),
-	    ' /*only take one argument or prop*/',
 	    React.createElement(Route, { path: 'examples', component: Examples }),
 	    React.createElement(Route, { path: 'about', component: About })
 	  )
@@ -25232,10 +25228,11 @@
 	'use strict';
 
 	var React = __webpack_require__(8);
+	/*how the routes are defined, using inde link show the main link selected only when it is required*/
 
 	var _require = __webpack_require__(166),
 	    Link = _require.Link,
-	    IndexLink = _require.IndexLink; /*how the routes are defined, using inde link show the main link selected only when it is required*/
+	    IndexLink = _require.IndexLink;
 
 	var Nav = React.createClass({
 	  displayName: 'Nav',
@@ -25243,10 +25240,8 @@
 
 	  onSearch: function onSearch(e) {
 	    e.preventDefault();
-
 	    var location = this.refs.location.value;
 	    var encodedLocation = encodeURIComponent(location);
-
 	    if (location.length > 0) {
 	      this.refs.location.value = '';
 	      window.location.hash = '#/?location=' + encodedLocation;
@@ -25340,7 +25335,6 @@
 	var Weather = React.createClass({
 	  displayName: 'Weather',
 
-
 	  getInitialState: function getInitialState() {
 	    return {
 	      isLoading: false
@@ -25364,6 +25358,7 @@
 
 	    openWeatherMap.getWeather(location).then(function (weather) {
 	      that.setState({
+	        //this is where we were messing up on in terms of specificity
 	        location: location,
 	        temp: weather.temp,
 	        humidity: weather.humidity,
@@ -25378,70 +25373,13 @@
 	        errorMessage: e.message
 	      });
 	    });
-
-	    // openWeatherMap.getHumidity(location).then(function(humidity){
-	    //   that.setState({
-	    //     location: location,
-	    //     humidity: humidity,
-	    //     isLoading: false,
-	    //   });
-	    // }, function(e){
-	    //   that.setState({
-	    //     isLoading:false,
-	    //     errorMessage: e.message
-	    //   });
-	    // });
-	    //
-	    // openWeatherMap.getDescription(location).then(function(description){
-	    //   that.setState({
-	    //     location: location,
-	    //     description: description,
-	    //     isLoading: false,
-	    //   });
-	    // }, function(e){
-	    //   that.setState({
-	    //     isLoading:false,
-	    //     errorMessage: e.message
-	    //   });
-	    // });
-	    //
-	    // openWeatherMap.getClouds(location).then(function(clouds){
-	    //   that.setState({
-	    //     location: location,
-	    //     clouds: clouds,
-	    //     isLoading: false,
-	    //   });
-	    // }, function(e){
-	    //   that.setState({
-	    //     isLoading:false,
-	    //     errorMessage: e.message
-	    //   });
-	    // });
-	    //
-	    // openWeatherMap.getIcon(location).then(function(icon){
-	    //   that.setState({
-	    //     location: location,
-	    //     icon: icon,
-	    //     isLoading: false,
-	    //   });
-	    // }, function(e){
-	    //   that.setState({
-	    //     isLoading:false,
-	    //     errorMessage: e.message
-	    //   });
-	    // });
-	    // this.setState({
-	    //   location : location,
-	    //   temp :23,
-	    // });
 	  },
 
 	  componentDidMount: function componentDidMount() {
 	    var location = this.props.location.query.location;
-
 	    if (location && location.length > 0) {
 	      this.handleSearch(location);
-	      window.location.hash = '#/'; /*resent to defautl */
+	      window.location.hash = '#/';
 	    }
 	  },
 
@@ -25450,7 +25388,7 @@
 
 	    if (location && location.length > 0) {
 	      this.handleSearch(location);
-	      window.location.hash = '#/'; /*resent to defautl */
+	      window.location.hash = '#/';
 	    }
 	  },
 
@@ -25464,9 +25402,7 @@
 	        clouds = _state.clouds,
 	        location = _state.location,
 	        errorMessage = _state.errorMessage;
-	    // can also be written as below
-	    // var temp = this.state.temp;
-	    // var location = this.state.location;
+
 
 	    function renderMessage() {
 	      if (isLoading) {
@@ -25518,7 +25454,6 @@
 	    e.preventDefault();
 
 	    var location = this.refs.location.value;
-
 	    if (location.length > 0) {
 	      this.refs.location.value = '';
 	      this.props.onSearch(location);
@@ -25551,13 +25486,10 @@
 
 	"use strict";
 
-	// https://www.reddit.com/r/FreeCodeCamp/comments/4con5s/how_do_i_use_the_icon_given_in_the_open_weather/
-
 	var React = __webpack_require__(8);
 
 	var WeatherMessage = React.createClass({
 	  displayName: "WeatherMessage",
-
 
 	  render: function render() {
 	    var _props = this.props,
@@ -25612,7 +25544,8 @@
 	        React.createElement(
 	          "div",
 	          { className: "weather-eachParameters" },
-	          temp
+	          temp,
+	          " \xB0F"
 	        ),
 	        React.createElement(
 	          "div",
@@ -25651,8 +25584,8 @@
 
 	module.exports = {
 	  getWeather: function getWeather(location) {
-	    var encodedLocation = encodeURIComponent(location); /*this is going to properlly encode it to the browser*/
-	    var requestUrl = OPEN_WEATHER_MAP_URL + '&q=' + encodedLocation; /*every is executed as a regular jav script expression*/
+	    var encodedLocation = encodeURIComponent(location);
+	    var requestUrl = OPEN_WEATHER_MAP_URL + '&q=' + encodedLocation; /* all this code is executed as a regular jav script expression*/
 
 	    return axios.get(requestUrl).then(function (res) {
 	      if (res.data.cod && res.data.message) {
@@ -26803,7 +26736,6 @@
 	"use strict";
 
 	var React = __webpack_require__(8);
-
 	// var About = React.createClass({
 	//   render: function () {
 	//     return (
@@ -26812,13 +26744,14 @@
 	//   }
 	// });
 	// This is lines 3-9 refactored.
+
 	var About = function About(props) {
 	  return React.createElement(
 	    "div",
 	    null,
 	    React.createElement(
 	      "h1",
-	      { className: "text-center" },
+	      { className: "text-center page-title font" },
 	      "About this App"
 	    ),
 	    React.createElement(
@@ -26842,7 +26775,7 @@
 	          { href: "https://facebook.github.io/react" },
 	          "React"
 	        ),
-	        " - This was the Javascript framework used."
+	        " - This was the Javascript framework used produced by Facebook."
 	      ),
 	      React.createElement(
 	        "li",
@@ -27348,7 +27281,7 @@
 
 
 	// module
-	exports.push([module.id, ".row {\n  background-image: url(/app/Images/earth.png);\n  background-repeat: no-repeat;\n  background-size: cover; }\n\n.cursor-default {\n  cursor: default !important; }\n\n.page-title {\n  color: #eabf86;\n  margin-top: 30px;\n  margin-bottom: 30px; }\n\ninput[type=search], input[type=submit] {\n  box-shadow: none;\n  border-radius: 5px;\n  outline: none; }\n\n.button-form {\n  border-radius: 5px;\n  outline: none;\n  font-size: 22px;\n  height: 40px;\n  display: flex;\n  align-items: center !important;\n  padding: 0; }\n\n.nav-search {\n  max-width: 300px !important;\n  width: 300px; }\n\n.font, .page-title {\n  font-family: 'bitter'; }\n\n.top-bar {\n  background-color: rgba(250, 250, 250, 0.8);\n  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.6); }\n\n.top-bar ul {\n  background-color: transparent !important; }\n\n.row {\n  /*background-color: red;*/\n  min-height: calc(100vh - 60px);\n  display: flex;\n  align-items: center;\n  justify-content: center; }\n\n.top-bar-left {\n  width: 50% !important; }\n\n.menu {\n  float: left;\n  width: 100%; }\n\n.app-name, .eachLink {\n  float: left;\n  height: 55px !important;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  width: 25%; }\n\n@media (max-width: 962px) {\n  .row {\n    min-height: calc(100vh - 150px); }\n  .top-bar-left, .top-bar-right {\n    width: 100% !important; }\n  .top-bar-right {\n    margin-top: 20px;\n    margin-bottom: 20px;\n    display: flex;\n    align-items: center;\n    justify-content: center; } }\n\n@media (max-width: 500px) {\n  .row {\n    min-height: calc(100vh - 210px); }\n  .app-name {\n    width: 100%;\n    float: left; }\n  .eachLink {\n    width: 32%;\n    float: left;\n    margin-left: 1%; }\n  .top-bar-right {\n    display: none; }\n  .nav-search {\n    width: 140px; } }\n\n.weather-location {\n  font-size: 30px;\n  text-transform: uppercase; }\n\n.weather-icon {\n  height: 70px;\n  display: flex;\n  justify-content: center;\n  align-items: center; }\n\n.weather-image {\n  height: 60px;\n  width: 60px; }\n\n.weather-item, .weather-parameters {\n  float: left;\n  width: 50%; }\n\n.weather-eachItem, .weather-eachParameters {\n  height: 50px;\n  display: flex;\n  justify-content: center;\n  align-items: center; }\n", ""]);
+	exports.push([module.id, ".row {\n  background-image: url(/app/Images/earth.png);\n  background-repeat: no-repeat;\n  background-size: cover; }\n\n.cursor-default {\n  cursor: default !important; }\n\n.page-title {\n  color: #eabf86;\n  margin-top: 30px;\n  margin-bottom: 30px; }\n\ninput[type=search], input[type=submit] {\n  box-shadow: none;\n  border-radius: 5px;\n  outline: none; }\n\n.button-form {\n  border-radius: 5px;\n  outline: none;\n  font-size: 22px;\n  height: 40px;\n  display: flex;\n  align-items: center !important;\n  padding: 0; }\n\n.nav-search {\n  max-width: 300px !important;\n  width: 300px; }\n\n.font, .page-title {\n  font-family: 'bitter'; }\n\n.top-bar {\n  background-color: rgba(250, 250, 250, 0.8);\n  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.6); }\n\n.top-bar ul {\n  background-color: transparent !important; }\n\n.row {\n  min-height: calc(100vh - 60px);\n  display: flex;\n  align-items: center;\n  justify-content: center; }\n\n.top-bar-left {\n  width: 50% !important; }\n\n.menu {\n  float: left;\n  width: 100%; }\n\n.app-name, .eachLink {\n  float: left;\n  height: 55px !important;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  width: 25%; }\n\n@media (max-width: 962px) {\n  .row {\n    min-height: calc(100vh - 150px); }\n  .top-bar-left, .top-bar-right {\n    width: 100% !important; }\n  .top-bar-right {\n    margin-top: 20px;\n    margin-bottom: 20px;\n    display: flex;\n    align-items: center;\n    justify-content: center; } }\n\n@media (max-width: 500px) {\n  .row {\n    min-height: calc(100vh - 210px); }\n  .app-name {\n    width: 100%;\n    float: left; }\n  .eachLink {\n    width: 32%;\n    float: left;\n    margin-left: 1%; }\n  .top-bar-right {\n    display: none; }\n  .nav-search {\n    width: 140px; } }\n\n.weather-location {\n  font-size: 30px;\n  text-transform: uppercase; }\n\n.weather-icon {\n  height: 70px;\n  display: flex;\n  justify-content: center;\n  align-items: center; }\n\n.weather-image {\n  height: 60px;\n  width: 60px; }\n\n.weather-item, .weather-parameters {\n  float: left;\n  width: 50%; }\n\n.weather-eachItem, .weather-eachParameters {\n  height: 50px;\n  display: flex;\n  justify-content: center;\n  align-items: center; }\n", ""]);
 
 	// exports
 
