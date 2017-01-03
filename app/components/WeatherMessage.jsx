@@ -1,4 +1,3 @@
-// https://www.reddit.com/r/FreeCodeCamp/comments/4con5s/how_do_i_use_the_icon_given_in_the_open_weather/
 
 var React = require('react');
 
