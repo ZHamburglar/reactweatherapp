@@ -22,7 +22,7 @@ var WeatherMessage = React.createClass({
             </div>
 
             <div className="weather-parameters cursor-default">
-              <div className="weather-eachParameters">{temp}</div>
+              <div className="weather-eachParameters">{temp} °F</div>
                 <div className="weather-eachParameters">{description}</div>
                   <div className="weather-eachParameters">{humidity}%</div>
                     <div className="weather-eachParameters">{clouds}%</div>
