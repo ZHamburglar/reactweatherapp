@@ -1,6 +1,6 @@
 var React = require('react');
-var {Link, IndexLink} = require('react-router'); /*how the routes are defined, using inde link show the main link selected only when it is required*/
-
+/*how the routes are defined, using inde link show the main link selected only when it is required*/
+var {Link, IndexLink} = require('react-router');
 var Nav = React.createClass({
 
   onSearch: function(e){

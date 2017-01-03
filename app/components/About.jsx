@@ -1,5 +1,4 @@
 var React = require('react');
-
 // var About = React.createClass({
 //   render: function () {
 //     return (
@@ -8,6 +7,7 @@ var React = require('react');
 //   }
 // });
 // This is lines 3-9 refactored.
+
 var About = (props) => {
   return (
     <div>
