@@ -25510,8 +25510,8 @@
 	        clouds = _props.clouds;
 
 	    var icons = "http://openweathermap.org/img/w/" + icon + ".png";
-	    var lat = { latitude: latitude };
-	    var long = { longitude: longitude };
+	    var mapurl = "http://dev.virtualearth.net/embeddedMap/v1/ajax/road?zoomLevel=10&center=" + latitude + "_" + longitude + "&pushpins=47.5_-102.5";
+
 	    return React.createElement(
 	      "div",
 	      { classNam: "weather font cursor-default" },
@@ -25576,14 +25576,7 @@
 	          "%"
 	        )
 	      ),
-	      React.createElement(
-	        "div",
-	        null,
-	        latitude,
-	        " ",
-	        longitude,
-	        " "
-	      )
+	      React.createElement("iframe", { width: "400", height: "300", frameborder: "0", scrolling: "no", marginheight: "0", marginwidth: "0", src: mapurl })
 	    );
 	  }
 	});
