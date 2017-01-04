@@ -2,8 +2,10 @@ var React = require('react');
 
 var WeatherMessage = React.createClass({
   render: function () {
-    var {temp,location, humidity, description, icon, clouds} = this.props;
+    var {temp,location, humidity, description, latitude, longitude, icon, clouds} = this.props;
     var icons =  "http://openweathermap.org/img/w/" + icon + ".png";
+    var lat = {latitude};
+    var long = {longitude};
     return(
         <div classNam="weather font cursor-default">
           <div className="weather-location text-center cursor-default">{location}</div>
@@ -22,6 +24,7 @@ var WeatherMessage = React.createClass({
                   <div className="weather-eachParameters">{humidity}%</div>
                     <div className="weather-eachParameters">{clouds}%</div>
             </div>
+            <div>{latitude} {longitude} </div>
         </div>
     );
   }

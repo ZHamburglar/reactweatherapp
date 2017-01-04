@@ -24,7 +24,9 @@ var Weather = React.createClass({
       humidity: undefined,
       description: undefined,
       clouds: undefined,
-      icon: undefined
+      icon: undefined,
+      latitude: undefined,
+      longitude: undefined
     });
 
 
@@ -37,6 +39,8 @@ var Weather = React.createClass({
         description: weather.description,
         clouds: weather.clouds,
         icon: weather.icon,
+        latitude: weather.latitude,
+        longitude: weather.longitude,
         isLoading: false,
       });
     }, function(e){
@@ -49,11 +53,13 @@ var Weather = React.createClass({
 
   componentDidMount: function(){
     var location= this.props.location.query.location;
+
     if(location && location.length>0){
       this.handleSearch(location)
       window.location.hash = '#/';
     }
   },
+
 
   componentWillReceiveProps: function (newProps){
     var location= newProps.location.query.location;
@@ -65,14 +71,15 @@ var Weather = React.createClass({
   },
 
   render: function () {
-    var {isLoading, temp, humidity, description, icon, clouds,  location, errorMessage} = this.state;
+    var {isLoading, temp, humidity, description, icon, clouds, location, latitude, longitude, errorMessage} = this.state;
 
     function renderMessage(){
         if (isLoading){
           return <h3 className="text-center">Fetching Weather...</h3>;
         }
         else if(location){
-          return <WeatherMessage location={location} temp={temp} humidity={humidity} description={description} icon={icon} clouds={clouds}/>;
+          return <WeatherMessage location={location} temp={temp} humidity={humidity} description={description} icon={icon} latitude={latitude} longitude={longitude} clouds={clouds}/>;
+
         }
     }
 

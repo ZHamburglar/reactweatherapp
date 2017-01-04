@@ -17,6 +17,7 @@ var About = (props) => {
       <p>
         Here are some of the tools I used:
       </p>
+
       <ul>
         <li>
           <a href="https://facebook.github.io/react">React</a> - This was the Javascript framework used produced by Facebook.

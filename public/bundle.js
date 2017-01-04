@@ -25353,7 +25353,9 @@
 	      humidity: undefined,
 	      description: undefined,
 	      clouds: undefined,
-	      icon: undefined
+	      icon: undefined,
+	      latitude: undefined,
+	      longitude: undefined
 	    });
 
 	    openWeatherMap.getWeather(location).then(function (weather) {
@@ -25365,6 +25367,8 @@
 	        description: weather.description,
 	        clouds: weather.clouds,
 	        icon: weather.icon,
+	        latitude: weather.latitude,
+	        longitude: weather.longitude,
 	        isLoading: false
 	      });
 	    }, function (e) {
@@ -25377,6 +25381,7 @@
 
 	  componentDidMount: function componentDidMount() {
 	    var location = this.props.location.query.location;
+
 	    if (location && location.length > 0) {
 	      this.handleSearch(location);
 	      window.location.hash = '#/';
@@ -25401,6 +25406,8 @@
 	        icon = _state.icon,
 	        clouds = _state.clouds,
 	        location = _state.location,
+	        latitude = _state.latitude,
+	        longitude = _state.longitude,
 	        errorMessage = _state.errorMessage;
 
 
@@ -25412,7 +25419,7 @@
 	          'Fetching Weather...'
 	        );
 	      } else if (location) {
-	        return React.createElement(WeatherMessage, { location: location, temp: temp, humidity: humidity, description: description, icon: icon, clouds: clouds });
+	        return React.createElement(WeatherMessage, { location: location, temp: temp, humidity: humidity, description: description, icon: icon, latitude: latitude, longitude: longitude, clouds: clouds });
 	      }
 	    }
 
@@ -25497,10 +25504,14 @@
 	        location = _props.location,
 	        humidity = _props.humidity,
 	        description = _props.description,
+	        latitude = _props.latitude,
+	        longitude = _props.longitude,
 	        icon = _props.icon,
 	        clouds = _props.clouds;
 
 	    var icons = "http://openweathermap.org/img/w/" + icon + ".png";
+	    var lat = { latitude: latitude };
+	    var long = { longitude: longitude };
 	    return React.createElement(
 	      "div",
 	      { classNam: "weather font cursor-default" },
@@ -25564,6 +25575,14 @@
 	          clouds,
 	          "%"
 	        )
+	      ),
+	      React.createElement(
+	        "div",
+	        null,
+	        latitude,
+	        " ",
+	        longitude,
+	        " "
 	      )
 	    );
 	  }
@@ -25596,7 +25615,9 @@
 	          humidity: res.data.main.humidity,
 	          description: res.data.weather[0].description,
 	          clouds: res.data.clouds.all,
-	          icon: res.data.weather[0].icon
+	          icon: res.data.weather[0].icon,
+	          latitude: res.data.coord.lat,
+	          longitude: res.data.coord.lon
 	        };
 	      }
 	    }, function (res) {

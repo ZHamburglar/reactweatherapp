@@ -18,7 +18,9 @@ module.exports={
               humidity: res.data.main.humidity,
               description: res.data.weather[0].description,
               clouds: res.data.clouds.all,
-              icon: res.data.weather[0].icon
+              icon: res.data.weather[0].icon,
+              latitude: res.data.coord.lat,
+              longitude: res.data.coord.lon
             };
       }
     },function (res){
